@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Liste der Veranstaltungen</title>
+	
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h2>Veranstaltungen</h2>
+		
+		<hr>
+	
+		<a th:href="@{/meeting/list}" class="btn btn-info btn-sm mb-3" >zurück zur Übersicht</a>
+		
+		<table>
+			<tr>
+				<td align="center">
+					<table>
+						<tr>
+							<th th:text="${meeting.name}" />
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th th:text="${meeting.date}" />
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th th:text="${meeting.time}" > Uhr</th>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr th:if="${participants.isEmpty()}">
+				<td>
+					Zu dieser Veranstaltung hat sich noch niemand angemeldet.
+				</td>
+			</tr>
+			<tr th:if="${!participants.isEmpty()}" >
+				<td>
+					<table class="table table-bordered table-striped" >
+						<thead class="thead-dark">
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>E-Mail</th>
+								<th>Firma</th>
+							</tr>
+						</thead>
+						<tr th:each="tempUser: ${participants}">
+							<td th:text="${counter.nextCounter}" align="right"/>
+							<td th:text="${tempUser.fullName}" />
+							<td th:text="${tempUser.email}" />
+							<td th:text="${tempUser.company}" />
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	
+	</div>
+
+</body>
+</html>

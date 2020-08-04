@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Veranstaltung hinzufügen</title>
+	
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h2>Veranstaltungen</h2>
+		<hr>
+		<h3>Veranstaltung hinzufügen</h3>
+		
+		<form action="#" th:action="@{save}" th:object="${meeting}" method="POST">
+			<input type="hidden" th:field="*{id}" />
+	
+			<label>Name:</label>
+			<a th:text="${errorMessage}" class="text text-danger" />
+			<input type="text" th:field="*{name}" class="form-control mb-4 col-4" placeholder="Veranstaltungsname" required="required" maxlength="100" />
+	
+			<label>Datum & Uhrzeit:</label>
+			<input type="datetime-local" th:field="*{datetime}" class="form-control mb-4 col-4" required="required" th:min="${now}" />
+	
+			<label>Anzeigen:</label>
+			<input type="checkbox" th:field="*{display}" class="form" checked/>
+			
+			<br>
+			<br>
+			
+			<button type="submit"  class="btn btn-info col-4">Veranstaltung speichern</button>
+			
+		</form>
+		
+		<br>
+			
+		<a th:href="@{list}" class="btn btn-link btn-sm mb-3" >Zurück zur Veranstaltungsliste</a>
+
+	</div>
+
+</body>
+
+</html>
