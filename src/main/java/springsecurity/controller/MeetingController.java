@@ -71,7 +71,7 @@ public class MeetingController {
 			return ValidPaths.REDIRECT_USER_AUTO_LOGOUT.getPath();
 		}
 
-		Meeting meeting = new Meeting();
+		Meeting meeting = new Meeting(true);
 		
 		if (id != 0) {
 			meeting = meetingService.getMeeting(id);

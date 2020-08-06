@@ -53,6 +53,10 @@ public class Meeting {
 		this.display = display;
 	}
 
+	public Meeting(boolean display) {
+		this.display = display;
+	}
+
 	public String getDate() {
 		return datetime.toString().substring(8, 10) + "." +  datetime.toString().substring(5, 7) + "." +  datetime.toString().substring(0, 4);
 	}
