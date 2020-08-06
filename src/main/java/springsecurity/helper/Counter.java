@@ -9,10 +9,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Counter {
 	
-	private int counter;
+	private int counter = 1;
 
 	public int getNextCounter() {
-		return ++counter;
+		return counter++;
 	}
 
 }

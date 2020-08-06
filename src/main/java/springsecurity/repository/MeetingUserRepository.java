@@ -19,7 +19,6 @@ public interface MeetingUserRepository extends JpaRepository<MeetingUser, Intege
 	@Transactional
 	public void deleteByIdUserAndIdMeeting(int userId, int meetingId);
 
-	@Transactional
 	public void deleteByIdMeeting(int id);
 
 }

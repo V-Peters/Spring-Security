@@ -10,12 +10,12 @@ import lombok.Setter;
 public class RegisterUser {
 	
 	private int id;
-	private String username;
-	private String password;
-	private String passwordCheck;
-	private String firstname;
-	private String lastname;
-	private String email;
-	private String company;
+	private String username = "";
+	private String password = "";
+	private String passwordCheck = "";
+	private String firstname = "";
+	private String lastname = "";
+	private String email = "";
+	private String company = "";
 	
 }

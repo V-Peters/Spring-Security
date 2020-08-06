@@ -4,14 +4,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import springsecurity.entity.Meeting;
-import springsecurity.entity.User;
 import springsecurity.repository.MeetingRepository;
 
 @Service
@@ -45,8 +41,8 @@ public class MeetingService {
 	}
 
 	public void saveMeeting(Meeting meeting) {
+		meeting.setLastUpdated(LocalDateTime.now());
 		meetingRepository.save(meeting);
-		meetingRepository.setLastUpdatedToNow(meeting.getId());
 	}
 
 	public void deleteMeeting(int id) {
@@ -54,12 +50,7 @@ public class MeetingService {
 	}
 
 	public void changeDisplay(int id, boolean notDisplay) {
-		
-//		boolean notDisplay = meetingRepository.findById(id).get().isDisplay();
-		
 		meetingRepository.changeDisplay(id, notDisplay);
-//		meetingRepository.changeDisplay(true, 14);
-		
 	}
 
 }

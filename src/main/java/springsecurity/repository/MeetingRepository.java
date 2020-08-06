@@ -16,9 +16,4 @@ public interface MeetingRepository extends JpaRepository<Meeting, Integer> {
 	@Query("UPDATE Meeting m SET m.display = :notDisplay WHERE m.id = :meetingId")
 	public void changeDisplay(@Param("meetingId") int id, @Param("notDisplay") boolean notDisplay);
 
-	@Transactional
-	@Modifying
-	@Query("UPDATE Meeting m SET m.lastUpdated = now() WHERE m.id = :id")
-	public void setLastUpdatedToNow(@Param("id") int id);
-
 }
