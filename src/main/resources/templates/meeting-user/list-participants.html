@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<title>Liste der Veranstaltungen</title>
 	
@@ -8,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	
 </head>
 
@@ -61,7 +62,7 @@
 							</tr>
 						</thead>
 						<tr th:each="tempUser: ${participants}">
-							<td th:text="${counter.nextCounter}" align="right"/>
+							<td th:text="${counter.nextCounter}" style="text-align: right"/>
 							<td th:text="${tempUser.fullName}" />
 							<td th:text="${tempUser.email}" />
 							<td th:text="${tempUser.company}" />

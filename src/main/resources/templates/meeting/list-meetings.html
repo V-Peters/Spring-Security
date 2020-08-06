@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	
 </head>
 
@@ -21,15 +21,15 @@
 		
 		<hr>
 		
-		<form th:action="@{/logout}" method="POST" align="right" >
+		<form th:action="@{/logout}" method="POST" style="text-align:right" >
 			Angemeldet als 
-			<a sec:authorize="hasRole('ROLE_ADMIN')" th:text="Administrator" />
-			<a sec:authorize="hasRole('ROLE_USER')" th:text="${user.firstname}"/>
-			<a sec:authorize="hasRole('ROLE_USER')" th:text="${user.lastname}"/>
+			<a sec:authorize="hasRole('ROLE_ADMIN')" th:text="Administrator" ></a>
+			<a sec:authorize="hasRole('ROLE_USER')" th:text="${user.firstname}"></a>
+			<a sec:authorize="hasRole('ROLE_USER')" th:text="${user.lastname}"></a>
 			<input type="submit" value="Logout" class="btn btn-secondary btn-sm mb-3"/>
 		</form>	
 		
-		<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/meeting/showSavePage(meetingId=0)}" class="btn btn-success btn-sm mb-3" align="right" >Veranstaltung hinzufügen</a>
+		<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/meeting/showSavePage(meetingId=0)}" class="btn btn-success btn-sm mb-3" style="text-align:rigth" >Veranstaltung hinzufügen</a>
 		
 		<br>
 	
@@ -38,9 +38,9 @@
 				<tr>
 					<th>Nr.</th>
 					<th>Veranstaltungsname</th>
-					<th align="center" >Datum</th>
-					<th align="center" >Uhrzeit</th>
-					<th sec:authorize="hasRole('ROLE_ADMIN')" align="center" >Aktion</th>
+					<th style="text-align:center" >Datum</th>
+					<th style="text-align:center" >Uhrzeit</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN')" style="text-align:center" >Aktion</th>
 					<th sec:authorize="hasRole('ROLE_ADMIN')" >Für User sichtbar</th>
 					<th sec:authorize="hasRole('ROLE_ADMIN')" >Teilnehmerliste</th>
 					<th sec:authorize="hasRole('ROLE_USER')" >An Veranstaltung teilnehmen</th>
@@ -49,8 +49,8 @@
 			
 			<tbody>
 				<tr th:each="tempMeeting : ${meetings}" th:if="${user.admin or tempMeeting.display}" >
-					<td th:text="${counter.nextCounter}" align="right" />
-					<td th:text="${tempMeeting.name}" width="385" />
+					<td th:text="${counter.nextCounter}" style="text-align:right" />
+					<td th:text="${tempMeeting.name}" style="width:385" />
 					<td th:text="${tempMeeting.date}" />
 					<td th:text="${tempMeeting.time}" />
 					
@@ -59,14 +59,14 @@
 						 | 
 						<a th:href="@{delete(meetingId=${tempMeeting.id})}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Sind Sie sicher, dass Sie diese Veranstaltung löschen möchten?'))) return false">Löschen</a>
 					</td>
-					<td sec:authorize="hasRole('ROLE_ADMIN')" align="center">
+					<td sec:authorize="hasRole('ROLE_ADMIN')" style="text-align:center" >
 						<a th:if="${tempMeeting.display}" th:href="@{changeDisplay(meetingId=${tempMeeting.id}, displayValue=${tempMeeting.display})}" class="btn btn-success btn-sm" >✔</a>
 						<a th:if="${!tempMeeting.display}" th:href="@{changeDisplay(meetingId=${tempMeeting.id}, displayValue=${tempMeeting.display})}" class="btn btn-danger btn-sm" >✖</a>
 					</td>
-					<td sec:authorize="hasRole('ROLE_ADMIN')" align="center">
+					<td sec:authorize="hasRole('ROLE_ADMIN')" style="text-align:center" >
 						<a th:href="@{/meetingUser/listParticipants(meetingId=${tempMeeting.id})}">anzeigen</a>
 					</td>
-					<td sec:authorize="hasRole('ROLE_USER')" align="center" >
+					<td sec:authorize="hasRole('ROLE_USER')" style="text-align:center" >
 						<a th:if="${meetingsSignedUpTo.contains(tempMeeting.id)}" th:href="@{/meetingUser/signOut(userId=${user.id}, meetingId=${tempMeeting.id})}" class="btn btn-success btn-sm" >✔</a>
 						<a th:if="${!meetingsSignedUpTo.contains(tempMeeting.id)}" th:href="@{/meetingUser/signUp(userId=${user.id}, meetingId=${tempMeeting.id})}" class="btn btn-danger btn-sm" >✖</a>
 					</td>

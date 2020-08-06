@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	
 </head>
 
@@ -34,15 +34,13 @@
 	<span th:text="${registrationError}"></span>
 </div>
 
-			<input type="hidden" th:field="*{id}" />
-			
 			<label>Benutzername:</label>
-			<a th:text="${errorMessageUsername}" class="text text-danger" />
+			<a th:text="${errorMessageUsername}" class="text text-danger" ></a>
 			<input type="text" th:field="*{username}" class="form-control mb-4 col-4" placeholder="Benutzername" required="required" minlength="4" />
 			<label>Passwort:</label>
 			<input type="password" th:field="*{password}" class="form-control mb-4 col-4" placeholder="Passwort" required="required" />
 			<label>Passwort bestätigen:</label>
-			<a th:text="${errorMessagePassword}" class="text text-danger" />
+			<a th:text="${errorMessagePassword}" class="text text-danger" ></a>
 			<input type="password" th:field="*{passwordCheck}" class="form-control mb-4 col-4" placeholder="Passwort" required="required" />
 			
 			<br>
