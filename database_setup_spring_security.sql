@@ -4,7 +4,7 @@
 
 DROP USER IF EXISTS 'spring-security'@'localhost';
 CREATE USER 'spring-security'@'localhost' IDENTIFIED BY 'spring-security';
-#GRANT ALL PRIVILEGES ON * . * TO 'spring-security'@'localhost';
+#GRANT ALL PRIVILEGES ON * . * TO 'spring-security'@'localhost' IDENTIFIED BY 'spring-security' WITH GRANT OPTOON;
 ALTER USER 'spring-security'@'localhost' IDENTIFIED WITH mysql_native_password BY 'spring-security';
 
 
@@ -14,7 +14,7 @@ ALTER USER 'spring-security'@'localhost' IDENTIFIED WITH mysql_native_password B
 
 DROP DATABASE IF EXISTS `spring-security`;
 CREATE DATABASE `spring-security`;
-USE `spring-security`;
+#USE `spring-security`;
 
 
 #########################################################################################################################################
@@ -29,8 +29,7 @@ CREATE TABLE `spring-security`.`meeting` (
   `display` tinyint(1) DEFAULT '1',
   `created` datetime DEFAULT now(),
   `last_updated` datetime DEFAULT now(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  PRIMARY KEY (`id`)
 );
 
 #########################################################################################################################################
@@ -46,20 +45,18 @@ CREATE TABLE `spring-security`.`user` (
   `company` varchar(100) NOT NULL,
   `created` datetime DEFAULT now(),
   `last_updated` datetime DEFAULT now(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  PRIMARY KEY (`id`)
 );
 
 #########################################################################################################################################
 
 DROP TABLE IF EXISTS `spring-security`.`role`;
 CREATE TABLE `spring-security`.`role` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `name` varchar(50) NOT NULL UNIQUE,
-  `created` datetime DEFAULT now(),
-  `last_updated` datetime DEFAULT now(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+#  `created` datetime DEFAULT now(),
+#  `last_updated` datetime DEFAULT now(),
+  PRIMARY KEY (`id`)
 );
 
 #########################################################################################################################################
@@ -69,12 +66,9 @@ CREATE TABLE `spring-security`.`user_role` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_user` INT NOT NULL UNIQUE,
   `id_role` INT NOT NULL,
-  `created` datetime DEFAULT now(),
-  `last_updated` datetime DEFAULT now(),
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_user`) REFERENCES `spring-security`.`user`(`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`id_role`) REFERENCES `spring-security`.`role`(`id`) ON DELETE CASCADE,
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  FOREIGN KEY (`id_role`) REFERENCES `spring-security`.`role`(`id`) ON DELETE CASCADE
 );
 
 #########################################################################################################################################
@@ -88,8 +82,7 @@ CREATE TABLE `spring-security`.`meeting_user` (
   `last_updated` datetime DEFAULT now(),
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_meeting`) REFERENCES `spring-security`.`meeting`(`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`id_user`) REFERENCES `spring-security`.`user`(`id`) ON DELETE CASCADE,
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  FOREIGN KEY (`id_user`) REFERENCES `spring-security`.`user`(`id`) ON DELETE CASCADE
 );
 
 
@@ -129,10 +122,11 @@ VALUES
 #########################################################################################################################################
 
 INSERT INTO `spring-security`.`role` (
-    `name`) 
+    `id`,
+    `name`)
 VALUES
-	('ROLE_ADMIN'),
-	('ROLE_USER');
+	(1, 'ROLE_ADMIN'),
+	(2, 'ROLE_USER');
     
 #########################################################################################################################################
 
