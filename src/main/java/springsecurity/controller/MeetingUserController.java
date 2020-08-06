@@ -17,13 +17,11 @@ import springsecurity.helper.Counter;
 import springsecurity.service.MeetingService;
 import springsecurity.service.MeetingUserService;
 import springsecurity.valid_paths.ValidPaths;
+import springsecurity.constants.Constants;
 
 @Controller
 @RequestMapping("/meetingUser")
 public class MeetingUserController {
-	
-	private static final String MEETING_ID = "meetingId";
-	private static final String USER_ID = "userId";
 	
 	@Autowired
 	private MeetingUserService meetingUserService;
@@ -32,7 +30,7 @@ public class MeetingUserController {
 	private MeetingService meetingService;
 
 	@GetMapping("/listParticipants")
-	public String listMeetings(@RequestParam(MEETING_ID) int id, Model model, HttpServletRequest request) {
+	public String listMeetings(@RequestParam(Constants.MEETING_ID) int id, Model model, HttpServletRequest request) {
 		
 		if (!this.isUserLoggedIn(request)) {
 			return ValidPaths.REDIRECT_USER_AUTO_LOGOUT.getPath();
@@ -49,7 +47,7 @@ public class MeetingUserController {
 	}
 	
 	@GetMapping("/signUp")
-	public String signUp(@RequestParam(USER_ID) int userId, @RequestParam(MEETING_ID) int meetingId, HttpServletRequest request) {
+	public String signUp(@RequestParam(Constants.USER_ID) int userId, @RequestParam(Constants.MEETING_ID) int meetingId, HttpServletRequest request) {
 		
 		if (!this.isUserLoggedIn(request)) {
 			return ValidPaths.REDIRECT_USER_AUTO_LOGOUT.getPath();
@@ -61,7 +59,7 @@ public class MeetingUserController {
 	}
 	
 	@GetMapping("/signOut")
-	public String signOut(@RequestParam(USER_ID) int userId, @RequestParam(MEETING_ID) int meetingId, HttpServletRequest request) {
+	public String signOut(@RequestParam(Constants.USER_ID) int userId, @RequestParam(Constants.MEETING_ID) int meetingId, HttpServletRequest request) {
 		
 		if (!this.isUserLoggedIn(request)) {
 			return ValidPaths.REDIRECT_USER_AUTO_LOGOUT.getPath();

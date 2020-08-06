@@ -22,15 +22,11 @@ import springsecurity.helper.Counter;
 import springsecurity.service.MeetingService;
 import springsecurity.service.MeetingUserService;
 import springsecurity.valid_paths.ValidPaths;
+import springsecurity.constants.Constants;
 
 @Controller
 @RequestMapping("/meeting")
 public class MeetingController {
-	
-	private static final String USER = "user";
-	private static final String MEETING_ID = "meetingId";
-	private static final String ERROR_MESSAGE = "errorMessage";
-	private static final String MEETING = "meeting";
 	
 	private MeetingService meetingService;
 	private MeetingUserService meetingUserService;
@@ -47,7 +43,7 @@ public class MeetingController {
 			return ValidPaths.REDIRECT_USER_AUTO_LOGOUT.getPath();
 		}
 		
-		User user = (User)request.getSession().getAttribute(USER);
+		User user = (User)request.getSession().getAttribute(Constants.USER);
 
 		List<MeetingUser> tempMeetingsSignedUpTo;
 		List<Integer> meetingsSignedUpTo = new ArrayList<>();
@@ -63,13 +59,13 @@ public class MeetingController {
 		model.addAttribute("counter", new Counter());
 		model.addAttribute("meetings", meetings);
 		model.addAttribute("meetingsSignedUpTo", meetingsSignedUpTo);
-		model.addAttribute(USER, user);
+		model.addAttribute(Constants.USER, user);
 		
 		return ValidPaths.MEETING_LIST_MEETINGS.getPath();
 	}
 	
 	@GetMapping("/showSavePage")
-	public String updateMeeting(@ModelAttribute(MEETING_ID) int id, @ModelAttribute(ERROR_MESSAGE) String errorMessage, Model model, RedirectAttributes redirectAttribute, HttpServletRequest request) {
+	public String updateMeeting(@ModelAttribute(Constants.MEETING_ID) int id, @ModelAttribute(Constants.ERROR_MESSAGE) String errorMessage, Model model, RedirectAttributes redirectAttribute, HttpServletRequest request) {
 		
 		if (!this.isUserLoggedIn(request)) {
 			return ValidPaths.REDIRECT_USER_AUTO_LOGOUT.getPath();
@@ -81,15 +77,15 @@ public class MeetingController {
 			meeting = meetingService.getMeeting(id);
 		}
 		
-		model.addAttribute(MEETING, meeting);
-		redirectAttribute.addFlashAttribute(ERROR_MESSAGE, errorMessage);
+		model.addAttribute(Constants.MEETING, meeting);
+		redirectAttribute.addFlashAttribute(Constants.ERROR_MESSAGE, errorMessage);
 		model.addAttribute("now", LocalDateTime.now().toString().substring(0, 16));
 		
 		return ValidPaths.MEETING_SAVE_MEETINGS.getPath();
 	}
 	
 	@PostMapping("/save")
-	public String saveMeeting(@ModelAttribute(MEETING) Meeting meeting, RedirectAttributes redirectAttribute, HttpServletRequest request) {
+	public String saveMeeting(@ModelAttribute(Constants.MEETING) Meeting meeting, RedirectAttributes redirectAttribute, HttpServletRequest request) {
 		
 		if (!this.isUserLoggedIn(request)) {
 			return ValidPaths.REDIRECT_USER_AUTO_LOGOUT.getPath();
@@ -97,8 +93,8 @@ public class MeetingController {
 		
 		if (meeting.getName().length() > 100) {
 			
-			redirectAttribute.addFlashAttribute(MEETING_ID, meeting.getId());
-			redirectAttribute.addFlashAttribute(ERROR_MESSAGE, "Der Name darf maximal 100 Zeichen lang sein");
+			redirectAttribute.addFlashAttribute(Constants.MEETING_ID, meeting.getId());
+			redirectAttribute.addFlashAttribute(Constants.ERROR_MESSAGE, "Der Name darf maximal 100 Zeichen lang sein");
 
 			return ValidPaths.REDIRECT_MEETING_SHOW_SAVE_PAGE.getPath();
 		}
@@ -108,7 +104,7 @@ public class MeetingController {
 	}
 	
 	@GetMapping("/delete")
-	public String deleteMeeting(@RequestParam(MEETING_ID) int id, RedirectAttributes redirectAttribute, HttpServletRequest request) {
+	public String deleteMeeting(@RequestParam(Constants.MEETING_ID) int id, RedirectAttributes redirectAttribute, HttpServletRequest request) {
 		
 		if (!this.isUserLoggedIn(request)) {
 			return ValidPaths.REDIRECT_USER_AUTO_LOGOUT.getPath();
@@ -121,7 +117,7 @@ public class MeetingController {
 	}
 	
 	@GetMapping("/changeDisplay")
-	public String changeDisplay(@RequestParam(MEETING_ID) int id, @RequestParam("displayValue") boolean display, RedirectAttributes redirectAttribute, HttpServletRequest request) {
+	public String changeDisplay(@RequestParam(Constants.MEETING_ID) int id, @RequestParam("displayValue") boolean display, RedirectAttributes redirectAttribute, HttpServletRequest request) {
 		
 		if (!this.isUserLoggedIn(request)) {
 			return ValidPaths.REDIRECT_USER_AUTO_LOGOUT.getPath();
@@ -133,7 +129,7 @@ public class MeetingController {
 	}
 	
 	private boolean isUserLoggedIn(HttpServletRequest request) {
-		return request.getSession().getAttribute(USER) != null;
+		return request.getSession().getAttribute(Constants.USER) != null;
 	}
 	
 }
