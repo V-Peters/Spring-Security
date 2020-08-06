@@ -35,9 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-        	.antMatchers("/", "/login", "/logout").permitAll()
-			.antMatchers("/meeting/list", "/user/autoLogout").hasRole("USER")
-			.antMatchers("/meeting/list", "/user/autoLogout").hasRole("ADMIN")
+        	.antMatchers("/", "/login", "/logout", "/meeting/list", "/user/autoLogout", "/user/register")
+        		.permitAll()
+			.antMatchers("/meetingUser/signUp", "/meetingUser/signOut")
+				.hasRole("USER")
+			.antMatchers("/meetingUser/listParticipants", "/meeting/delete", "/meeting/showSavePage", "/meeting/save", "/meeting/changeDisplay")
+				.hasRole("ADMIN")
 			.and()
 			.formLogin()
 				.loginPage("/user/showLoginPage")
@@ -47,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().permitAll()
 			.and()
-			.exceptionHandling().accessDeniedPage("/unauthorized/access-denied");
+			.exceptionHandling().accessDeniedPage("/user/accessDenied");
 		
 	}
 	
