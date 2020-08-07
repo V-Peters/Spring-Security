@@ -28,10 +28,10 @@
 	
 			<label>Name:</label>
 			<a th:text="${errorMessage}" class="text text-danger" ></a>
-			<input type="text" th:field="*{name}" class="form-control mb-4 col-4" placeholder="Veranstaltungsname" required="required" maxlength="100" />
+			<input type="text" th:field="*{name}" class="form-control mb-4 col-5" placeholder="Veranstaltungsname" required="required" maxlength="100" />
 	
 			<label>Datum & Uhrzeit:</label>
-			<input type="datetime-local" th:field="*{datetime}" class="form-control mb-4 col-4" required="required" th:min="${now}" />
+			<input type="datetime-local" th:field="*{datetime}" class="form-control mb-4 col-5" required="required" th:min="${now}" />
 	
 			<label>Anzeigen:</label>
 			<input type="checkbox" th:field="*{display}" class="form" checked="checked"/>
@@ -39,13 +39,13 @@
 			<br>
 			<br>
 			
-			<button type="submit"  class="btn btn-info col-4">Veranstaltung speichern</button>
+			<button type="submit"  class="btn btn-info col-3">Veranstaltung speichern</button>
 			
 		</form>
 		
 		<br>
 			
-		<a th:href="@{list}" class="btn btn-link btn-sm mb-3" >Zurück zur Veranstaltungsliste</a>
+		<a th:href="@{list}" class="btn btn-secondary btn-sm col-3" >Zurück zur Veranstaltungsliste</a>
 
 	</div>
 

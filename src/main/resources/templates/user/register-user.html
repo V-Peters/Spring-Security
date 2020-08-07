@@ -21,38 +21,38 @@
 	
 		<hr>
 		
-		<a th:href="@{/}" class="btn btn-info btn-sm">Home</a>
+		<a th:href="@{/}" class="btn btn-info col-2">Zurück zur Startseite</a>
 	
 		<hr>
 		
-		<a th:href="@{/user/showLoginPage}" class="btn btn-info btn-sm">Zum Login</a>
+		<a th:href="@{/user/showLoginPage}" class="btn btn-info mb-4 col-2">Zum Login</a>
 		
 		<form th:action="@{/user/register}" th:object="${registerUser}" method="POST">
 		
 <!-- Check for registration error -->
-<div th:if="${registrationError}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+<div th:if="${registrationError}" class="alert alert-danger mb-4 col-5">
 	<span th:text="${registrationError}"></span>
 </div>
 
 			<label>Benutzername:</label>
 			<a th:text="${errorMessageUsername}" class="text text-danger" ></a>
-			<input type="text" th:field="*{username}" class="form-control mb-4 col-4" placeholder="Benutzername" required="required" minlength="4" />
+			<input type="text" th:field="*{username}" class="form-control mb-4 col-5" placeholder="Benutzername" required="required" minlength="4" />
 			<label>Passwort:</label>
-			<input type="password" th:field="*{password}" class="form-control mb-4 col-4" placeholder="Passwort" required="required" />
+			<input type="password" th:field="*{password}" class="form-control mb-4 col-5" placeholder="Passwort" required="required" />
 			<label>Passwort bestätigen:</label>
 			<a th:text="${errorMessagePassword}" class="text text-danger" ></a>
-			<input type="password" th:field="*{passwordCheck}" class="form-control mb-4 col-4" placeholder="Passwort" required="required" />
+			<input type="password" th:field="*{passwordCheck}" class="form-control mb-4 col-5" placeholder="Passwort" required="required" />
 			
 			<br>
 			
 			<label>Vorname:</label>
-			<input type="text" th:field="*{firstname}" class="form-control mb-4 col-4" placeholder="Vorname" required="required" value="${user.firstname}" />
+			<input type="text" th:field="*{firstname}" class="form-control mb-4 col-5" placeholder="Vorname" required="required" value="${user.firstname}" />
 			<label>Nachname:</label>
-			<input type="text" th:field="*{lastname}" class="form-control mb-4 col-4" placeholder="Nachname" required="required" value="${user.lastname}" />
+			<input type="text" th:field="*{lastname}" class="form-control mb-4 col-5" placeholder="Nachname" required="required" value="${user.lastname}" />
 			<label>E-Mail:</label>
-			<input type="text" th:field="*{email}" class="form-control mb-4 col-4" placeholder="E-Mail" required="required" value="${user.email}" />
+			<input type="text" th:field="*{email}" class="form-control mb-4 col-5" placeholder="E-Mail" required="required" value="${user.email}" />
 			<label>Firma/Unternehmen:</label>
-			<input type="text" th:field="*{company}" class="form-control mb-4 col-4" placeholder="Firma/Unternehmen" required="required" value="${user.company}" />
+			<input type="text" th:field="*{company}" class="form-control mb-4 col-5" placeholder="Firma/Unternehmen" required="required" value="${user.company}" />
 			<br>
 			<button type="submit"  class="btn btn-info col-2">Registrieren</button>
 		</form>
