@@ -51,6 +51,11 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_role"))
 	private Collection<Role> roles;
+	
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
 
 //	TODO vielleicht nicht nötig
 	public User(String firstname, String lastname, String email, String company, Collection<Role> roles) {

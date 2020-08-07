@@ -24,27 +24,21 @@
 		<a th:href="@{/}" class="btn btn-info col-2">Zurück zur Startseite</a>
 		
 		<a th:text="${errorMessageLogin}" class="text text-danger" ></a>
+		
+		<a th:if="${param.error}" class="btn alert-danger col-3" style="text-align: center">Ungültige Login Daten.</a>
+		<a th:if="${param.logout}" class="btn alert-success col-3" style="text-align: center">Logout erfolgreich.</a>
+		<a th:if="${registrationSuccessfull.length() != 0}" th:text="${registrationSuccessfull}" class="btn alert-success col-3" style="text-align: center"></a>
 	
 		<hr>
-		
-		<div th:if="${param.error}" class="alert alert-danger  mb-4 col-5">
-			Falscher Benutzername oder falsches Passwort.
-		</div>
-		
-		<div th:if="${param.logout}" class="alert alert-success  mb-4 col-5">
-			Logout erfolgreich.
-		</div>
 		
 		<a th:href="@{/user/showRegisterPage}" class="btn btn-info mb-4 col-2">Zur Registrierung</a>
 		
 		<form th:action="@{/user/login}" method="POST">
 
 			<label>Benutzername:</label>
-			<a th:text="${errorMessageUsername}" class="text text-danger" ></a>
-			<input type="text" name="username" placeholder="Benutzername" class="form-control mb-4 col-5" required="required" />
+			<input type="text" name="username" placeholder="Benutzername" class="form-control mb-4 col-5" required="required" autofocus="autofocus" />
 			
 			<label>Passwort:</label>
-			<a th:text="${errorMessagePassword}" class="text text-danger" ></a>
 			<input type="password" name="password" placeholder="Passwort" class="form-control mb-4 col-5" required="required" />
 			
 			<button type="submit" class="btn btn-info col-2">Anmelden</button>

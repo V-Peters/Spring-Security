@@ -36,7 +36,7 @@
 
 			<label>Benutzername:</label>
 			<a th:text="${errorMessageUsername}" class="text text-danger" ></a>
-			<input type="text" th:field="*{username}" class="form-control mb-4 col-5" placeholder="Benutzername" required="required" minlength="4" />
+			<input type="text" th:field="*{username}" class="form-control mb-4 col-5" placeholder="Benutzername" required="required" minlength="4" autofocus="autofocus" />
 			<label>Passwort:</label>
 			<input type="password" th:field="*{password}" class="form-control mb-4 col-5" placeholder="Passwort" required="required" />
 			<label>Passwort bestätigen:</label>
