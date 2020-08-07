@@ -4,7 +4,7 @@
 
 DROP USER IF EXISTS 'spring-security'@'localhost';
 CREATE USER 'spring-security'@'localhost' IDENTIFIED BY 'spring-security';
-#GRANT ALL PRIVILEGES ON * . * TO 'spring-security'@'localhost' IDENTIFIED BY 'spring-security' WITH GRANT OPTOON;
+#GRANT ALL PRIVILEGES ON *.* TO 'spring-security'@'localhost';
 ALTER USER 'spring-security'@'localhost' IDENTIFIED WITH mysql_native_password BY 'spring-security';
 
 
@@ -14,7 +14,6 @@ ALTER USER 'spring-security'@'localhost' IDENTIFIED WITH mysql_native_password B
 
 DROP DATABASE IF EXISTS `spring-security`;
 CREATE DATABASE `spring-security`;
-#USE `spring-security`;
 
 
 #########################################################################################################################################
@@ -54,8 +53,6 @@ DROP TABLE IF EXISTS `spring-security`.`role`;
 CREATE TABLE `spring-security`.`role` (
   `id` int NOT NULL,
   `name` varchar(50) NOT NULL UNIQUE,
-#  `created` datetime DEFAULT now(),
-#  `last_updated` datetime DEFAULT now(),
   PRIMARY KEY (`id`)
 );
 
