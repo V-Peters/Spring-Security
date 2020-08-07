@@ -4,7 +4,7 @@
 
 DROP USER IF EXISTS 'spring-security'@'localhost';
 CREATE USER 'spring-security'@'localhost' IDENTIFIED BY 'spring-security';
-#GRANT ALL PRIVILEGES ON *.* TO 'spring-security'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'spring-security'@'localhost';
 ALTER USER 'spring-security'@'localhost' IDENTIFIED WITH mysql_native_password BY 'spring-security';
 
 
