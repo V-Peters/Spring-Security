@@ -52,37 +52,6 @@ public class User {
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_role"))
 	private Collection<Role> roles;
 	
-	public User(String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
-
-//	TODO vielleicht nicht nötig
-	public User(String firstname, String lastname, String email, String company, Collection<Role> roles) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.company = company;
-		this.roles = roles;
-	}
-
-//	TODO vielleicht nicht nötig
-	public User(String username, String password, String firstname, String lastname, String email, Collection<Role> roles) {
-		this.username = username;
-		this.password = password;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.roles = roles;
-	}
-	
-	public User(int id, String firstname, String lastname, Collection<Role> role) {
-		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.roles = role;
-	}
-
 	public User(String username, String password, String firstname, String lastname, String email, String company, Collection<Role> roles) {
 		this.username = username;
 		this.password = password;
@@ -91,25 +60,6 @@ public class User {
 		this.email = email;
 		this.company = company;
 		this.roles = roles;
-	}
-
-	public User(String firstname, String lastname, String email, String company) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.company = company;
-	}
-
-	public User(String username, String firstname, String lastname, String email, String company) {
-		this.username = username;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.company = company;
-	}
-
-	public User(String username) {
-		this.username = username;
 	}
 	
 	public String getFullName() {

@@ -8,10 +8,7 @@ public enum ValidPaths {
 	REDIRECT_USER_SHOW_LOGIN_PAGE("redirect:/user/showLoginPage"),
 	REDIRECT_USER_SHOW_REGISTER_PAGE("redirect:/user/showRegisterPage"),
 	REDIRECT_USER_LOGIN_USER("redirect:/user/loginUser"),
-	
 	REDIRECT_USER_AUTO_LOGOUT("redirect:/user/autoLogout"),
-	REDIRECT_USER_CONVERT_REGISTERUSER_TO_NORMAL_USER("redirect:/user/convertRegisterUserToNormalUser"),
-
 	
 	MEETING_LIST_MEETINGS("meeting/list-meetings"),
 	MEETING_SAVE_MEETINGS("meeting/save-meeting"),

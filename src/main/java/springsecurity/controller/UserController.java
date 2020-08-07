@@ -25,9 +25,9 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping("/showLoginPage")
-	public String showLoginPage(@ModelAttribute(Constants.ERROR_MESSAGE_LOGIN) String errorMessageLogin, @ModelAttribute(Constants.REGISTRATION_SUCCESSFULL) String registrationSuccessfull, @ModelAttribute(Constants.USER) User user, Model model) {
+	public String showLoginPage(@ModelAttribute(Constants.ERROR_MESSAGE_LOGIN) String errorMessageLogin, @ModelAttribute(Constants.REGISTRATION_SUCCESSFULL) String registrationSuccessfull, Model model) {
 		
-		model.addAttribute(Constants.LOGIN_USER, user);
+		model.addAttribute(Constants.LOGIN_USER, new User());
 		model.addAttribute(Constants.ERROR_MESSAGE_LOGIN, errorMessageLogin);
 		model.addAttribute(Constants.REGISTRATION_SUCCESSFULL, registrationSuccessfull);
 		

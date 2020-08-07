@@ -111,7 +111,6 @@ public class MeetingController {
 		}
 		
 		meetingService.deleteMeeting(id);
-		meetingUserService.deleteMeetings(id);
 		
 		return ValidPaths.REDIRECT_MEETING_LIST.getPath();
 	}

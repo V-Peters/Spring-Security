@@ -32,25 +32,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 	
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-
-		http.authorizeRequests()
-        	.antMatchers("/", "/login", "/logout", "/meeting/list", "/user/autoLogout", "/user/register")
-        		.permitAll()
-			.antMatchers("/meetingUser/signUp", "/meetingUser/signOut")
-				.hasRole("USER")
-			.antMatchers("/meetingUser/listParticipants", "/meeting/delete", "/meeting/showSavePage", "/meeting/save", "/meeting/changeDisplay")
-				.hasRole("ADMIN")
-			.and()
-			.formLogin()
-				.loginPage("/user/showLoginPage")
-				.loginProcessingUrl("/user/login")
-				.successHandler(customAuthenticationSuccessHandler)
-				.permitAll()
-			.and()
-			.logout().permitAll()
-			.and()
-			.exceptionHandling().accessDeniedPage("/user/accessDenied");
+	protected void configure(HttpSecurity http) {
+		
+		try {
+			http.authorizeRequests()
+	        	.antMatchers("/", "/login", "/logout", "/meeting/list", "/user/autoLogout", "/user/register")
+	        		.permitAll()
+				.antMatchers("/meetingUser/signUp", "/meetingUser/signOut")
+					.hasRole("USER")
+				.antMatchers("/meetingUser/listParticipants", "/meeting/delete", "/meeting/showSavePage", "/meeting/save", "/meeting/changeDisplay")
+					.hasRole("ADMIN")
+				.and()
+				.formLogin()
+					.loginPage("/user/showLoginPage")
+					.loginProcessingUrl("/user/login")
+					.successHandler(customAuthenticationSuccessHandler)
+					.permitAll()
+				.and()
+				.logout().permitAll()
+				.and()
+				.exceptionHandling().accessDeniedPage("/user/accessDenied");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

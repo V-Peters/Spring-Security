@@ -40,19 +40,6 @@ public class Meeting {
 	@Column(name = "last_updated")
 	private LocalDateTime lastUpdated;
 	
-	public Meeting(int id, String name, LocalDateTime datetime, boolean display) {
-		this.id = id;
-		this.name = name;
-		this.datetime = datetime;
-		this.display = display;
-	}
-
-	public Meeting(String name, LocalDateTime datetime, boolean display) {
-		this.name = name;
-		this.datetime = datetime;
-		this.display = display;
-	}
-
 	public Meeting(boolean display) {
 		this.display = display;
 	}

@@ -46,7 +46,4 @@ public class MeetingUserService {
 		meetingUserRepository.deleteByIdUserAndIdMeeting(userId, meetingId);
 	}
 
-	public void deleteMeetings(int id) {
-		meetingUserRepository.deleteByIdMeeting(id);
-	}
 }

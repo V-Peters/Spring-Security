@@ -1,8 +1,5 @@
 package springsecurity.config;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,23 +19,20 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     private UserService userService;
 	
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
-		System.out.println("\n\nIn customAuthenticationSuccessHandler\n\n");
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
 
 		String userName = authentication.getName();
 		
-		System.out.println("userName=" + userName);
-
-		User theUser = userService.getUserByUsername(userName);
+		User user = userService.getUserByUsername(userName);
 		
-		// now place in the session
 		HttpSession session = request.getSession();
-		session.setAttribute("user", theUser);
+		session.setAttribute("user", user);
 		
-		// forward to home page
-		
-		response.sendRedirect(request.getContextPath() + "/meeting/list");
+		try {
+			response.sendRedirect(request.getContextPath() + "/meeting/list");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

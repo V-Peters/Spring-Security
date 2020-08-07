@@ -1,6 +1,5 @@
 package springsecurity.service;
 
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -30,11 +29,7 @@ public class UserService implements UserDetailsService {
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-
-	public boolean checkPassword(User loginUser) {
-		return loginUser.getPassword().equals(userRepository.findByUsername(loginUser.getUsername()).getPassword());
-	}
-
+	
 	public void registerUser(RegisterUser registerUser) {
 		
 		User user = new User(registerUser.getUsername(), passwordEncoder.encode(registerUser.getPassword()), registerUser.getFirstname(), registerUser.getLastname(), registerUser.getEmail(), registerUser.getCompany(), Arrays.asList(roleRepository.findByName("ROLE_USER")));
@@ -47,7 +42,6 @@ public class UserService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) {
 		User user = userRepository.findByUsername(username);
 		if (user == null) {
-			System.out.println("Invalid username or password.");
 			return null;
 		}
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), this.mapRolesToAuthorities(user.getRoles()));

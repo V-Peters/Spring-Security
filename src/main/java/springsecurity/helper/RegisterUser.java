@@ -9,12 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RegisterUser {
 	
-	public RegisterUser(String firstname, String lastname, String email, String company) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.email = email;
-		this.company = company;
-	}
 	private int id;
 	private String username = "";
 	private String password = "";

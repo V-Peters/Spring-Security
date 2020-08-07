@@ -25,16 +25,13 @@ public class MeetingService {
 	}
 
 	public Meeting getMeeting(int id) {
+		
 		Optional<Meeting> tempMeeting = meetingRepository.findById(id);
 		
 		Meeting meeting = null;
 		
 		if (tempMeeting.isPresent()) {
 			meeting = tempMeeting.get();
-		} else {
-			// TODO später wieder entfernen
-			System.err.println("ES KONNTE KEIN MEETING MIT DIESER ID GEFUNDEN WERDEN!!!");
-			throw new RuntimeException("ES KONNTE KEIN MEETING MIT DIESER ID GEFUNDEN WERDEN - " + id);
 		}
 		
 		return meeting;
